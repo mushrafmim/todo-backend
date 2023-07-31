@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm"
+import { ToDo } from "./ToDo"
 
 @Entity()
 export class User {
@@ -29,5 +30,8 @@ export class User {
         type: 'date'
     })
     birthdate
+
+    @OneToMany(() => ToDo, (todo) => todo.user)
+    todos: ToDo[]
 
 }
